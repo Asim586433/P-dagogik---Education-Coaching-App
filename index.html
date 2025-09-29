@@ -3,388 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pädagogik+ | Education & Coaching App</title>
+    <title>Pädagogik+ | Education Platform</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #4a6fa5;
-            --secondary: #6b8cbc;
-            --accent: #ff7e5f;
-            --light: #f5f7fa;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .logo i {
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .user-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .btn {
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 60px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        /* Dashboard Section */
-        .dashboard {
-            padding: 60px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--dark);
-        }
-        
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 25px;
-            transition: transform 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            gap: 10px;
-        }
-        
-        .card-header i {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .card h3 {
-            font-size: 1.3rem;
-            color: var(--dark);
-        }
-        
-        .feature-list {
-            list-style-type: none;
-        }
-        
-        .feature-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .feature-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .feature-list i {
-            color: var(--success);
-        }
-        
-        /* Coaching Wheel */
-        .coaching-wheel {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 30px;
-            margin: 40px 0;
-            text-align: center;
-        }
-        
-        .wheel-container {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-        }
-        
-        .wheel {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: conic-gradient(
-                #ff7e5f 0% 8.33%,
-                #feb47b 8.33% 16.66%,
-                #6b8cbc 16.66% 25%,
-                #4a6fa5 25% 33.33%,
-                #2ecc71 33.33% 41.66%,
-                #27ae60 41.66% 50%,
-                #3498db 50% 58.33%,
-                #2980b9 58.33% 66.66%,
-                #9b59b6 66.66% 75%,
-                #8e44ad 75% 83.33%,
-                #e74c3c 83.33% 91.66%,
-                #c0392b 91.66% 100%
-            );
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .wheel-center {
-            width: 100px;
-            height: 100px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--dark);
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        
-        .wheel-slice {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            clip-path: polygon(50% 50%, 50% 0%, 100% 0%);
-            transform-origin: center;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-        
-        .wheel-slice:nth-child(1) { transform: rotate(15deg); }
-        .wheel-slice:nth-child(2) { transform: rotate(45deg); }
-        .wheel-slice:nth-child(3) { transform: rotate(75deg); }
-        .wheel-slice:nth-child(4) { transform: rotate(105deg); }
-        .wheel-slice:nth-child(5) { transform: rotate(135deg); }
-        .wheel-slice:nth-child(6) { transform: rotate(165deg); }
-        .wheel-slice:nth-child(7) { transform: rotate(195deg); }
-        .wheel-slice:nth-child(8) { transform: rotate(225deg); }
-        .wheel-slice:nth-child(9) { transform: rotate(255deg); }
-        .wheel-slice:nth-child(10) { transform: rotate(285deg); }
-        .wheel-slice:nth-child(11) { transform: rotate(315deg); }
-        .wheel-slice:nth-child(12) { transform: rotate(345deg); }
-        
-        /* AI Features */
-        .ai-features {
-            background-color: var(--light);
-            padding: 60px 0;
-        }
-        
-        .ai-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .ai-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .ai-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 40px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column h4 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links {
-            list-style-type: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .wheel {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .wheel-center {
-                width: 80px;
-                height: 80px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
@@ -393,213 +16,186 @@
                     <span>Pädagogik+</span>
                 </div>
                 <div class="nav-links">
-                    <a href="#">Dashboard</a>
-                    <a href="#">Students</a>
-                    <a href="#">Coaching</a>
-                    <a href="#">Reports</a>
-                    <a href="#">Analytics</a>
+                    <a href="#" class="nav-link active" data-section="home">Home</a>
+                    <a href="#features" class="nav-link" data-section="features">Features</a>
+                    <a href="#about" class="nav-link" data-section="about">About</a>
+                    <a href="#contact" class="nav-link" data-section="contact">Contact</a>
                 </div>
                 <div class="user-actions">
-                    <button class="btn btn-outline">Login</button>
-                    <button class="btn btn-primary">Sign Up</button>
+                    <button class="btn btn-outline" id="loginBtn">Login</button>
+                    <button class="btn btn-primary" id="signupBtn">Sign Up</button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero active-section" id="home">
         <div class="container">
             <h1>Transform Education with AI-Powered Coaching</h1>
             <p>An integrated platform for teachers, students, and parents with intelligent tools for personalized learning and development.</p>
-            <button class="btn btn-primary">Start Free Trial</button>
+            <button class="btn btn-primary" id="demoBtn">Start Free Trial</button>
         </div>
     </section>
 
-    <!-- Dashboard Section -->
-    <section class="dashboard">
+    <section class="portals active-section" id="features">
         <div class="container">
-            <h2 class="section-title">App Features Overview</h2>
-            <div class="dashboard-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-users"></i>
-                        <h3>Tutor App</h3>
+            <h2 class="section-title">Access Your Portal</h2>
+            <div class="portal-grid">
+                <div class="portal-card tutor">
+                    <div class="portal-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
                     </div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Student & group management</li>
-                        <li><i class="fas fa-check"></i> 1:1 coaching sessions</li>
-                        <li><i class="fas fa-check"></i> Session recording with AI transcripts</li>
-                        <li><i class="fas fa-check"></i> Calendar integration</li>
-                        <li><i class="fas fa-check"></i> Automated parent reports</li>
-                    </ul>
+                    <h3>Tutor Portal</h3>
+                    <p>Access tools for student management, coaching sessions, AI transcripts, and parent reporting.</p>
+                    <button class="btn btn-tutor portal-login" data-portal="tutor">Login as Tutor</button>
                 </div>
                 
-                <div class="card">
-                    <div class="card-header">
+                <div class="portal-card school">
+                    <div class="portal-icon">
                         <i class="fas fa-school"></i>
-                        <h3>School App</h3>
                     </div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Student database import</li>
-                        <li><i class="fas fa-check"></i> Tutor management system</li>
-                        <li><i class="fas fa-check"></i> Monitoring & analytics</li>
-                        <li><i class="fas fa-check"></i> Privacy-compliant data handling</li>
-                    </ul>
+                    <h3>School Portal</h3>
+                    <p>Manage student databases, tutor assignments, monitoring, and analytics in one place.</p>
+                    <button class="btn btn-school portal-login" data-portal="school">Login as School</button>
                 </div>
                 
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Admin Dashboard</h3>
+                <div class="portal-card admin">
+                    <div class="portal-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> School & tutor management</li>
-                        <li><i class="fas fa-check"></i> Usage monitoring & analytics</li>
-                        <li><i class="fas fa-check"></i> Subscription management</li>
-                        <li><i class="fas fa-check"></i> Broadcast challenges & activities</li>
-                    </ul>
+                    <h3>Admin Portal</h3>
+                    <p>Oversee system-wide operations, subscriptions, analytics, and content management.</p>
+                    <button class="btn btn-admin portal-login" data-portal="admin">Login as Admin</button>
                 </div>
-            </div>
-            
-            <!-- Coaching Wheel -->
-            <div class="coaching-wheel">
-                <h2>Coaching Wheel - 12 Development Topics</h2>
-                <p>Interactive tool for structured 1:1 coaching sessions with students</p>
-                
-                <div class="wheel-container">
-                    <div class="wheel">
-                        <div class="wheel-center">Coaching Wheel</div>
-                        <div class="wheel-slice">Goals</div>
-                        <div class="wheel-slice">Motivation</div>
-                        <div class="wheel-slice">Skills</div>
-                        <div class="wheel-slice">Resources</div>
-                        <div class="wheel-slice">Progress</div>
-                        <div class="wheel-slice">Challenges</div>
-                        <div class="wheel-slice">Feedback</div>
-                        <div class="wheel-slice">Reflection</div>
-                        <div class="wheel-slice">Planning</div>
-                        <div class="wheel-slice">Support</div>
-                        <div class="wheel-slice">Well-being</div>
-                        <div class="wheel-slice">Next Steps</div>
-                    </div>
-                </div>
-                
-                <p>Select a topic to begin a focused coaching conversation with AI-powered insights</p>
             </div>
         </div>
     </section>
 
-    <!-- AI Features Section -->
-    <section class="ai-features">
+    <section class="features" id="about">
         <div class="container">
-            <h2 class="section-title">AI-Powered Features</h2>
-            <div class="ai-grid">
-                <div class="ai-card">
-                    <div class="ai-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Speech-to-Text</h3>
-                    <p>Automatic transcription of coaching conversations with high accuracy.</p>
+            <h2 class="section-title">Platform Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI-Powered Insights</h3>
+                    <p>Advanced analytics and automated reporting using artificial intelligence.</p>
                 </div>
-                
-                <div class="ai-card">
-                    <div class="ai-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>AI Summaries</h3>
-                    <p>Intelligent session summaries that highlight key insights and action items.</p>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure & Compliant</h3>
+                    <p>GDPR-compliant data handling with enterprise-grade security.</p>
                 </div>
-                
-                <div class="ai-card">
-                    <div class="ai-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>Analytics</h3>
-                    <p>Data-driven insights into student progress and coaching effectiveness.</p>
+                <div class="feature-card">
+                    <i class="fas fa-sync-alt"></i>
+                    <h3>Real-time Sync</h3>
+                    <p>Seamless synchronization across all devices and platforms.</p>
                 </div>
-                
-                <div class="ai-card">
-                    <div class="ai-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Smart Reports</h3>
-                    <p>Automated parent reports with personalized recommendations.</p>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Progress Tracking</h3>
+                    <p>Comprehensive analytics to monitor student development and growth.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"This platform has revolutionized how we manage our tutoring programs. The AI features save us hours each week!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Maria Schmidt</strong>
+                        <span>Head Tutor, Berlin International School</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The automated reporting and parent communication tools have significantly improved our efficiency and parent satisfaction."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Dr. Thomas Weber</strong>
+                        <span>School Administrator</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h4>Pädagogik+</h4>
                     <p>Transforming education through technology and personalized coaching approaches.</p>
                 </div>
-                
                 <div class="footer-column">
-                    <h4>Platform</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Tutor App</a></li>
-                        <li><a href="#">School App</a></li>
-                        <li><a href="#">Admin Dashboard</a></li>
-                        <li><a href="#">Mobile Apps</a></li>
-                    </ul>
+                    <h4>Contact</h4>
+                    <p>Email: info@padagogik-plus.com<br>Phone: +49 30 12345678<br>Berlin, Germany</p>
                 </div>
-                
                 <div class="footer-column">
-                    <h4>Resources</h4>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Webinars</a></li>
-                        <li><a href="#">Community</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
-            
             <div class="copyright">
                 <p>&copy; 2023 Pädagogik+. All rights reserved. Education technology for a better future.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Simple interactive elements for the prototype
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click event to coaching wheel slices
-            const wheelSlices = document.querySelectorAll('.wheel-slice');
-            wheelSlices.forEach(slice => {
-                slice.addEventListener('click', function() {
-                    const topic = this.textContent;
-                    alert(`Starting coaching session on: ${topic}\n\nThis would open the coaching interface with AI-powered tools for this specific topic.`);
-                });
-            });
-            
-            // Add hover effects to cards
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
-                });
-            });
-        });
-    </script>
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="loginModalTitle">Login to Pädagogik+</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Your email" value="tutor@demo.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Your password" value="demo123">
+                </div>
+                <div class="form-group">
+                    <label for="loginRole">Login as:</label>
+                    <select id="loginRole" class="form-control">
+                        <option value="tutor">Tutor</option>
+                        <option value="school">School Administrator</option>
+                        <option value="admin">System Administrator</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-bottom: 15px;" id="submitLogin">Login</button>
+                <div class="demo-accounts">
+                    <h4 style="margin-bottom: 10px; color: var(--dark);">Demo Accounts:</h4>
+                    <div class="demo-account-item">
+                        <strong>Tutor:</strong> tutor@demo.com / demo123
+                    </div>
+                    <div class="demo-account-item">
+                        <strong>School:</strong> school@demo.com / demo123
+                    </div>
+                    <div class="demo-account-item">
+                        <strong>Admin:</strong> admin@demo.com / demo123
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
