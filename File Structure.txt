@@ -1,0 +1,8 @@
+education-platform/
+├── index.html
+├── tutor-dashboard.html
+├── school-dashboard.html
+├── admin-dashboard.html
+├── styles.css
+├── script.js
+└── data.json

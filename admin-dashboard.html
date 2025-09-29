@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Pädagogik+</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-dashboard">
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Pädagogik+ Admin</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="#schools" class="nav-link active">Schools</a>
+                    <a href="#subscriptions" class="nav-link">Subscriptions</a>
+                    <a href="#analytics" class="nav-link">Analytics</a>
+                    <a href="#system" class="nav-link">System</a>
+                </div>
+                <div class="user-actions">
+                    <div class="user-info">
+                        <div class="user-avatar">AD</div>
+                        <span id="userName">System Administrator</span>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">System Administration Dashboard</h1>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalSchools">0</div>
+                    <div class="stat-label">Active Schools</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalUsers">0</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="systemUptime">100%</div>
+                    <div class="stat-label">System Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="revenue">€0</div>
+                    <div class="stat-label">Monthly Revenue</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <button class="btn btn-admin" id="createChallengeBtn">
+                <i class="fas fa-trophy"></i> Create Challenge
+            </button>
+            <button class="btn btn-outline" id="sendAnnouncementBtn">
+                <i class="fas fa-bullhorn"></i> Send Announcement
+            </button>
+            <button class="btn btn-outline" id="systemSettingsBtn">
+                <i class="fas fa-cogs"></i> System Settings
+            </button>
+            <button class="btn btn-outline" id="backupSystemBtn">
+                <i class="fas fa-database"></i> Backup System
+            </button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-university"></i>
+                    <h3>School Management</h3>
+                </div>
+                <div class="school-list" id="schoolList">
+                    <!-- Schools will be loaded here -->
+                </div>
+                <button class="btn btn-admin" style="width: 100%; margin-top: 15px;" id="manageSchoolsBtn">
+                    <i class="fas fa-edit"></i> Manage All Schools
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Subscription Management</h3>
+                </div>
+                <div class="subscription-overview" id="subscriptionOverview">
+                    <!-- Subscription data will be loaded here -->
+                </div>
+                <button class="btn btn-admin" style="width: 100%; margin-top: 15px;" id="subscriptionConsoleBtn">
+                    <i class="fas fa-chart-bar"></i> Subscription Console
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>System Analytics</h3>
+                </div>
+                <div class="system-analytics" id="systemAnalytics">
+                    <!-- System analytics will be loaded here -->
+                </div>
+                <button class="btn btn-admin" style="width: 100%; margin-top: 15px;" id="detailedAnalyticsBtn">
+                    <i class="fas fa-chart-pie"></i> Detailed Analytics
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Broadcast System</h3>
+                </div>
+                <div class="broadcast-actions">
+                    <button class="btn btn-admin" id="createBroadcastBtn">
+                        <i class="fas fa-plus"></i> Create Broadcast
+                    </button>
+                    <button class="btn btn-outline" id="viewBroadcastsBtn">
+                        <i class="fas fa-list"></i> View All
+                    </button>
+                </div>
+                <div class="recent-broadcasts" id="recentBroadcasts">
+                    <!-- Broadcasts will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-list"></i>
+                <h3>System Overview & Performance</h3>
+            </div>
+            <table class="data-table" id="systemStatsTable">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Status</th>
+                        <th>Trend</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- System stats will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-server"></i>
+                <h3>System Health & Monitoring</h3>
+            </div>
+            <div class="system-health" id="systemHealth">
+                <!-- System health indicators will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Broadcast Modal -->
+    <div class="modal" id="broadcastModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="broadcastModalTitle">Create New Broadcast</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="broadcastType">Broadcast Type</label>
+                    <select id="broadcastType" class="form-control">
+                        <option value="challenge">Learning Challenge</option>
+                        <option value="announcement">System Announcement</option>
+                        <option value="activity">New Activity</option>
+                        <option value="maintenance">Maintenance Notice</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="broadcastTitle">Title</label>
+                    <input type="text" id="broadcastTitle" class="form-control" placeholder="Enter broadcast title">
+                </div>
+                <div class="form-group">
+                    <label for="broadcastMessage">Message</label>
+                    <textarea id="broadcastMessage" class="form-control" rows="4" placeholder="Enter broadcast message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="broadcastTarget">Target Audience</label>
+                    <select id="broadcastTarget" class="form-control">
+                        <option value="all">All Schools & Users</option>
+                        <option value="schools">Schools Only</option>
+                        <option value="tutors">Tutors Only</option>
+                        <option value="specific">Specific Schools</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="broadcastSchedule">Schedule</label>
+                    <select id="broadcastSchedule" class="form-control">
+                        <option value="immediate">Send Immediately</option>
+                        <option value="scheduled">Schedule for Later</option>
+                        <option value="recurring">Recurring Broadcast</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="cancelBroadcast">Cancel</button>
+                    <button class="btn btn-admin" id="sendBroadcast">
+                        <i class="fas fa-paper-plane"></i> Send Broadcast
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Settings Modal -->
+    <div class="modal" id="systemSettingsModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>System Settings</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="systemMaintenance">System Maintenance Mode</label>
+                    <select id="systemMaintenance" class="form-control">
+                        <option value="off">Off</option>
+                        <option value="on">On</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dataRetention">Data Retention Policy (months)</label>
+                    <input type="number" id="dataRetention" class="form-control" value="24" min="1" max="60">
+                </div>
+                <div class="form-group">
+                    <label for="backupFrequency">Backup Frequency</label>
+                    <select id="backupFrequency" class="form-control">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="maxUsers">Maximum Concurrent Users</label>
+                    <input type="number" id="maxUsers" class="form-control" value="1000" min="100" max="10000">
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="cancelSettings">Cancel</button>
+                    <button class="btn btn-admin" id="saveSystemSettings">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

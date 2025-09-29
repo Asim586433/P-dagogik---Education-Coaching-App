@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Dashboard - Pädagogik+</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="school-dashboard">
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Pädagogik+ School</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="#students" class="nav-link active">Students</a>
+                    <a href="#tutors" class="nav-link">Tutors</a>
+                    <a href="#analytics" class="nav-link">Analytics</a>
+                    <a href="#settings" class="nav-link">Settings</a>
+                </div>
+                <div class="user-actions">
+                    <div class="user-info">
+                        <div class="user-avatar">SA</div>
+                        <span id="userName">Gymnasium Berlin</span>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">School Administration Dashboard</h1>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalStudents">0</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="activeTutors">0</div>
+                    <div class="stat-label">Active Tutors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="completionRate">0%</div>
+                    <div class="stat-label">Completion Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgRating">0.0</div>
+                    <div class="stat-label">Avg. Rating</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <button class="btn btn-school" id="importStudentsBtn">
+                <i class="fas fa-file-import"></i> Import Students
+            </button>
+            <button class="btn btn-outline" id="addTutorBtn">
+                <i class="fas fa-user-plus"></i> Add Tutor
+            </button>
+            <button class="btn btn-outline" id="generateSchoolReportBtn">
+                <i class="fas fa-chart-pie"></i> School Report
+            </button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-database"></i>
+                    <h3>Student Database</h3>
+                </div>
+                <div class="data-actions">
+                    <button class="btn btn-school" id="importDataBtn">
+                        <i class="fas fa-file-import"></i> Import Data
+                    </button>
+                    <button class="btn btn-outline" id="exportDataBtn">
+                        <i class="fas fa-file-export"></i> Export Data
+                    </button>
+                    <button class="btn btn-outline" id="bulkActionsBtn">
+                        <i class="fas fa-cogs"></i> Bulk Actions
+                    </button>
+                </div>
+                <div class="student-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalStudentsCount">0</span>
+                        <span class="stat-label">Total Students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="activeStudentsCount">0</span>
+                        <span class="stat-label">Active Students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="newThisMonth">0</span>
+                        <span class="stat-label">New This Month</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Tutor Management</h3>
+                </div>
+                <div class="tutor-list" id="tutorList">
+                    <!-- Tutors will be loaded here -->
+                </div>
+                <button class="btn btn-school" style="width: 100%; margin-top: 15px;" id="manageTutorsBtn">
+                    <i class="fas fa-users-cog"></i> Manage All Tutors
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>School Analytics</h3>
+                </div>
+                <div class="analytics-overview" id="analyticsOverview">
+                    <!-- Analytics will be loaded here -->
+                </div>
+                <button class="btn btn-school" style="width: 100%; margin-top: 15px;" id="viewAnalyticsBtn">
+                    <i class="fas fa-chart-line"></i> View Detailed Analytics
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Data Privacy & Compliance</h3>
+                </div>
+                <div class="privacy-status">
+                    <div class="status-item">
+                        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                        <span>GDPR Compliance: Active</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                        <span>Data Encryption: Enabled</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-sync-alt" style="color: var(--warning);"></i>
+                        <span>Last Audit: 30 days ago</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i>
+                        <span>Data Retention: Review Needed</span>
+                    </div>
+                </div>
+                <button class="btn btn-school" style="width: 100%; margin-top: 15px;" id="privacySettingsBtn">
+                    <i class="fas fa-cog"></i> Privacy Settings
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-list"></i>
+                <h3>School Performance Overview</h3>
+            </div>
+            <table class="data-table" id="schoolStatsTable">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Trend</th>
+                        <th>Comparison</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Stats will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-bell"></i>
+                <h3>Recent Activities & Alerts</h3>
+            </div>
+            <div class="activity-feed" id="activityFeed">
+                <!-- Activities will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Import Modal -->
+    <div class="modal" id="importModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Import Student Data</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="importFile">Select File</label>
+                    <input type="file" id="importFile" class="form-control" accept=".csv,.xlsx,.xml">
+                    <small>Supported formats: CSV, Excel, XML. Maximum file size: 10MB</small>
+                </div>
+                <div class="form-group">
+                    <label for="dataMapping">Data Mapping</label>
+                    <select id="dataMapping" class="form-control">
+                        <option value="auto">Auto-detect Format</option>
+                        <option value="custom">Custom Mapping</option>
+                        <option value="template">Use Template</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="importOptions">Import Options</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="updateExisting" checked>
+                            Update existing records
+                        </label>
+                        <label>
+                            <input type="checkbox" id="sendNotifications">
+                            Send welcome notifications
+                        </label>
+                        <label>
+                            <input type="checkbox" id="createAccounts">
+                            Create student accounts
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="privacyCheck" required>
+                        I confirm this data import complies with GDPR regulations
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="cancelImport">Cancel</button>
+                    <button class="btn btn-school" id="processImport">
+                        <i class="fas fa-upload"></i> Process Import
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Tutor Modal -->
+    <div class="modal" id="addTutorModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Add New Tutor</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="tutorName">Full Name</label>
+                    <input type="text" id="tutorName" class="form-control" placeholder="Tutor's full name">
+                </div>
+                <div class="form-group">
+                    <label for="tutorEmail">Email</label>
+                    <input type="email" id="tutorEmail" class="form-control" placeholder="Tutor's email">
+                </div>
+                <div class="form-group">
+                    <label for="tutorSpecialization">Specialization</label>
+                    <select id="tutorSpecialization" class="form-control">
+                        <option value="math">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="languages">Languages</option>
+                        <option value="humanities">Humanities</option>
+                        <option value="all">All Subjects</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tutorExperience">Experience Level</label>
+                    <select id="tutorExperience" class="form-control">
+                        <option value="junior">Junior (0-2 years)</option>
+                        <option value="mid">Mid-level (2-5 years)</option>
+                        <option value="senior">Senior (5+ years)</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="cancelAddTutor">Cancel</button>
+                    <button class="btn btn-school" id="saveTutor">Add Tutor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

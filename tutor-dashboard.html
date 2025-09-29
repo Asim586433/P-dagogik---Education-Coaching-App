@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Dashboard - Pädagogik+</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tutor-dashboard">
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Pädagogik+ Tutor</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="#students" class="nav-link active">Students</a>
+                    <a href="#sessions" class="nav-link">Sessions</a>
+                    <a href="#reports" class="nav-link">Reports</a>
+                    <a href="#calendar" class="nav-link">Calendar</a>
+                </div>
+                <div class="user-actions">
+                    <div class="user-info">
+                        <div class="user-avatar">TS</div>
+                        <span id="userName">Thomas Schmidt</span>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Tutor Dashboard</h1>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalStudents">0</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="sessionsThisWeek">0</div>
+                    <div class="stat-label">Sessions This Week</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgProgress">0%</div>
+                    <div class="stat-label">Avg. Progress</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="pendingReports">0</div>
+                    <div class="stat-label">Pending Reports</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <button class="btn btn-tutor" id="quickSessionBtn">
+                <i class="fas fa-plus"></i> Start Quick Session
+            </button>
+            <button class="btn btn-outline" id="generateReportBtn">
+                <i class="fas fa-file-pdf"></i> Generate Report
+            </button>
+            <button class="btn btn-outline" id="syncCalendarBtn">
+                <i class="fas fa-sync-alt"></i> Sync Calendar
+            </button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-users"></i>
+                    <h3>Student Management</h3>
+                </div>
+                <div class="student-list" id="studentList">
+                    <!-- Students will be loaded here -->
+                </div>
+                <button class="btn btn-tutor" style="width: 100%; margin-top: 15px;" id="addStudentBtn">
+                    <i class="fas fa-user-plus"></i> Add New Student
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-comments"></i>
+                    <h3>Recent Coaching Sessions</h3>
+                </div>
+                <div class="session-list" id="sessionList">
+                    <!-- Sessions will be loaded here -->
+                </div>
+                <button class="btn btn-tutor" style="width: 100%; margin-top: 15px;" id="startSessionBtn">
+                    <i class="fas fa-play-circle"></i> Start New Session
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Today's Schedule</h3>
+                </div>
+                <div class="schedule-list" id="scheduleList">
+                    <!-- Schedule will be loaded here -->
+                </div>
+                <button class="btn btn-tutor" style="width: 100%; margin-top: 15px;" id="viewCalendarBtn">
+                    <i class="fas fa-calendar"></i> View Full Calendar
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Reports & Analytics</h3>
+                </div>
+                <div class="report-list" id="reportList">
+                    <!-- Reports will be loaded here -->
+                </div>
+                <button class="btn btn-tutor" style="width: 100%; margin-top: 15px;" id="generateReportBtn2">
+                    <i class="fas fa-chart-bar"></i> Generate New Report
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i>
+                <h3>Student Progress Overview</h3>
+            </div>
+            <div class="progress-charts" id="progressCharts">
+                <!-- Progress charts will be loaded here -->
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-robot"></i>
+                <h3>AI Assistant</h3>
+            </div>
+            <div class="ai-assistant">
+                <div class="ai-input-group">
+                    <input type="text" id="aiQuery" class="form-control" placeholder="Ask AI assistant about student progress, session planning, or report generation...">
+                    <button class="btn btn-tutor" id="askAIBtn">Ask AI</button>
+                </div>
+                <div class="ai-response" id="aiResponse">
+                    <!-- AI responses will appear here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Session Modal -->
+    <div class="modal" id="sessionModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Coaching Session</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="sessionStudent">Select Student</label>
+                    <select id="sessionStudent" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label for="sessionTopic">Session Topic</label>
+                    <select id="sessionTopic" class="form-control">
+                        <option value="goals">Goals & Planning</option>
+                        <option value="motivation">Motivation</option>
+                        <option value="skills">Skills Development</option>
+                        <option value="progress">Progress Review</option>
+                        <option value="challenges">Challenge Areas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sessionDuration">Duration (minutes)</label>
+                    <input type="number" id="sessionDuration" class="form-control" value="45" min="15" max="120">
+                </div>
+                <div class="form-group">
+                    <label for="sessionNotes">Session Notes</label>
+                    <textarea id="sessionNotes" class="form-control" rows="4" placeholder="Enter session notes..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>AI Features</label>
+                    <div class="ai-features">
+                        <button class="btn btn-outline" id="startRecording">
+                            <i class="fas fa-microphone"></i> Start Recording
+                        </button>
+                        <button class="btn btn-outline" id="generateSummary">
+                            <i class="fas fa-robot"></i> Generate Summary
+                        </button>
+                        <button class="btn btn-outline" id="suggestActions">
+                            <i class="fas fa-lightbulb"></i> Suggest Actions
+                        </button>
+                    </div>
+                    <div id="aiOutput" class="ai-output"></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="cancelSession">Cancel</button>
+                    <button class="btn btn-tutor" id="saveSession">Save Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div class="modal" id="addStudentModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Add New Student</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="studentName">Full Name</label>
+                    <input type="text" id="studentName" class="form-control" placeholder="Student's full name">
+                </div>
+                <div class="form-group">
+                    <label for="studentGrade">Grade</label>
+                    <input type="text" id="studentGrade" class="form-control" placeholder="Student's grade">
+                </div>
+                <div class="form-group">
+                    <label for="studentSubjects">Subjects</label>
+                    <input type="text" id="studentSubjects" class="form-control" placeholder="Subjects (comma separated)">
+                </div>
+                <div class="form-group">
+                    <label for="studentEmail">Email (optional)</label>
+                    <input type="email" id="studentEmail" class="form-control" placeholder="Student's email">
+                </div>
+                <div class="form-group">
+                    <label for="studentParent">Parent/Guardian Name</label>
+                    <input type="text" id="studentParent" class="form-control" placeholder="Parent or guardian name">
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="cancelAddStudent">Cancel</button>
+                    <button class="btn btn-tutor" id="saveStudent">Add Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

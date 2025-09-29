@@ -1,0 +1,61 @@
+{
+  "platform": {
+    "name": "Pädagogik+",
+    "version": "2.1.0",
+    "description": "AI-Powered Education and Coaching Platform"
+  },
+  "demoAccounts": {
+    "tutor": {
+      "email": "tutor@demo.com",
+      "password": "demo123",
+      "name": "Thomas Schmidt",
+      "role": "tutor"
+    },
+    "school": {
+      "email": "school@demo.com",
+      "password": "demo123",
+      "name": "Gymnasium Berlin", 
+      "role": "school"
+    },
+    "admin": {
+      "email": "admin@demo.com",
+      "password": "demo123",
+      "name": "System Administrator",
+      "role": "admin"
+    }
+  },
+  "features": {
+    "tutor": [
+      "Student & group management",
+      "1:1 coaching sessions", 
+      "Session recording with AI transcripts",
+      "Calendar integration",
+      "Automated parent reports",
+      "Progress tracking & analytics",
+      "AI-powered insights"
+    ],
+    "school": [
+      "Student database import (CSV, Excel, XML)",
+      "Tutor management system", 
+      "Monitoring & analytics dashboard",
+      "Privacy-compliant data handling",
+      "GDPR compliance tools",
+      "Bulk operations",
+      "School-wide reporting"
+    ],
+    "admin": [
+      "School & tutor management",
+      "Usage monitoring & analytics", 
+      "Subscription management",
+      "Broadcast challenges & activities",
+      "System health monitoring",
+      "Revenue analytics",
+      "Platform configuration"
+    ]
+  },
+  "systemRequirements": {
+    "browsers": ["Chrome 90+", "Firefox 88+", "Safari 14+", "Edge 90+"],
+    "storage": "LocalStorage for demo data",
+    "features": ["JavaScript ES6+", "CSS Grid", "Flexbox"]
+  }
+}
